@@ -1,0 +1,34 @@
+.section {
+  padding: 20px 0px 0px;
+  text-align: center;
+}
+.title {
+  margin: 0px 0px 20px;
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+  text-transform: capitalize;
+  color: #f8640e;
+}
+.container {
+  text-align: start;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 23;
+  -webkit-box-orient: vertical;
+}
+
+.subtitle {
+  margin: 0px 0px 15px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.text {
+  margin: 0px 0px 10px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.7;
+  letter-spacing: 0.4px;
+}
