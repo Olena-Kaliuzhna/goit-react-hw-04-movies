@@ -64,9 +64,9 @@ export default class MoviesDetailsView extends Component {
             </div>
             <Suspense>
               <Switch>
-                <Route path="/movies/:movieId/cast" component={MoviesCast} />
+                <Route path={`${routes.movieId}/cast`} component={MoviesCast} />
                 <Route
-                  path="/movies/:movieId/reviews"
+                  path={`${routes.movieId}/reviews`}
                   component={MoviesReviews}
                 />
               </Switch>

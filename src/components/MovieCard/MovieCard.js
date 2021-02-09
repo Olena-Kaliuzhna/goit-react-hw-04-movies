@@ -8,26 +8,32 @@ import routes from '../../routes';
 
 function MovieCard({ movie, location }) {
   const from = location.state?.from;
+  const {
+    poster_path,
+    original_name,
+    vote_average,
+    overview,
+    genres,
+    id,
+  } = movie;
   return (
     <div className={s.container}>
       <div className={s.containerImage}>
         <img
           className={s.image}
-          src={movie.poster_path ? api.imgPath + movie.poster_path : noMovieImg}
-          alt={movie.original_name}
+          src={poster_path ? api.imgPath + poster_path : noMovieImg}
+          alt={original_name}
         />
       </div>
       <div className={s.iner}>
         <div>
-          <h3 className={s.subtitle}>{`User score: ${
-            movie.vote_average * 10
-          }%`}</h3>
+          <h3 className={s.subtitle}>{`User score: ${vote_average * 10}%`}</h3>
           <h3 className={s.subtitle}>Overview</h3>
-          <p className={s.text}>{movie.overview}</p>
+          <p className={s.text}>{overview}</p>
           <h3 className={s.subtitle}>Genres</h3>
           <ul className={(s.text, s.genreList)}>
-            {movie.genres &&
-              movie.genres.map(({ id, name }) => (
+            {genres &&
+              genres.map(({ id, name }) => (
                 <li className={s.genre} key={id}>
                   {name}
                 </li>
@@ -39,7 +45,7 @@ function MovieCard({ movie, location }) {
           <li>
             <NavLink
               to={{
-                pathname: `${routes.movies}/${movie.id}/cast`,
+                pathname: `${routes.movies}/${id}/cast`,
                 state: { from },
               }}
               className={s.link}
@@ -51,7 +57,7 @@ function MovieCard({ movie, location }) {
           <li>
             <NavLink
               to={{
-                pathname: `${routes.movies}/${movie.id}/reviews`,
+                pathname: `${routes.movies}/${id}/reviews`,
                 state: { from },
               }}
               className={s.link}
