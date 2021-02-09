@@ -1,6 +1,7 @@
 import React, { Component, lazy, Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import * as api from '../service/movies-api';
 import MovieCard from '../components/MovieCard/MovieCard';
 import Loader from '../components/Loader/Loader';

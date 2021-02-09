@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import * as api from '../../service/movies-api';
 import noCastImg from '../../images/noimages-200x300.png';
 import s from './MovieCast.module.css';

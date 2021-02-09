@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as api from '../service/movies-api';
 import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Searchbar from '../components/Searchbar/Searchbar';
 import MoviesList from '../components/MoviesList/MoviesList';
 import Loader from '../components/Loader/Loader';
@@ -14,19 +15,9 @@ export default class SearchMovie extends Component {
 
   componentDidMount() {
     const query = new URLSearchParams(this.props.location.search).get('query');
-    if (!query) {
-      return;
+    if (query) {
+      this.fetchMovies(query);
     }
-
-    api
-      .searchMovies(query)
-      .then(movies => {
-        this.setState({
-          movies: movies,
-        });
-      })
-      .catch(error => toast.error('Побробуйте снова'))
-      .finally(() => this.setState({ isLoading: false }));
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -40,9 +31,13 @@ export default class SearchMovie extends Component {
     if (prevQuery === nextQuery) {
       return;
     }
+
+    this.fetchMovies(nextQuery);
+  }
+  fetchMovies = query => {
     this.setState({ isLoading: true });
     api
-      .searchMovies(nextQuery)
+      .searchMovies(query)
       .then(movies => {
         this.setState({
           movies: movies,
@@ -50,7 +45,7 @@ export default class SearchMovie extends Component {
       })
       .catch(error => toast.error('Побробуйте снова'))
       .finally(() => this.setState({ isLoading: false }));
-  }
+  };
 
   setSearchQuery = searchQuery => {
     this.props.history.push({

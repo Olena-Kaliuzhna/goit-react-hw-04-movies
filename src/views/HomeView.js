@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as api from '../service/movies-api';
 import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import MoviesList from '../components/MoviesList/MoviesList';
 import Loader from '../components/Loader/Loader';
 
