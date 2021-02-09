@@ -3,6 +3,8 @@ import MoviesPreview from '../MoviesPreview/MoviesPreview';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import noMovieImg from '../../images/poster-is-not-available.jpg';
+import routes from '../../routes';
+import * as api from '../../service/movies-api';
 import s from './MoviesList.module.css';
 
 const MoviesList = ({ movies, location }) => {
@@ -13,16 +15,14 @@ const MoviesList = ({ movies, location }) => {
           <Link
             className={s.link}
             to={{
-              pathname: `/movies/${id}`,
+              pathname: `${routes.movies}/${id}`,
               state: { from: location },
             }}
           >
             <MoviesPreview
               title={title}
               imgUrl={
-                poster_path
-                  ? `https://image.tmdb.org/t/p/w500/${poster_path}`
-                  : noMovieImg
+                poster_path ? api.posterImgPath + poster_path : noMovieImg
               }
             />
           </Link>

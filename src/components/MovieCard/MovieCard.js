@@ -4,6 +4,7 @@ import * as api from '../../service/movies-api';
 import { NavLink, withRouter } from 'react-router-dom';
 import noMovieImg from '../../images/poster-is-not-available.jpg';
 import s from './MovieCard.module.css';
+import routes from '../../routes';
 
 function MovieCard({ movie, location }) {
   const from = location.state?.from;
@@ -37,7 +38,10 @@ function MovieCard({ movie, location }) {
         <ul className={s.list}>
           <li>
             <NavLink
-              to={{ pathname: `/movies/${movie.id}/cast`, state: { from } }}
+              to={{
+                pathname: `${routes.movies}/${movie.id}/cast`,
+                state: { from },
+              }}
               className={s.link}
               activeClassName={s.activLink}
             >
@@ -46,7 +50,10 @@ function MovieCard({ movie, location }) {
           </li>
           <li>
             <NavLink
-              to={{ pathname: `/movies/${movie.id}/reviews`, state: { from } }}
+              to={{
+                pathname: `${routes.movies}/${movie.id}/reviews`,
+                state: { from },
+              }}
               className={s.link}
               activeClassName={s.activLink}
             >
