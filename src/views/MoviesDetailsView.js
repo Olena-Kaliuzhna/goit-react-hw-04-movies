@@ -5,6 +5,7 @@ import * as api from '../service/movies-api';
 import MovieCard from '../components/MovieCard/MovieCard';
 import Loader from '../components/Loader/Loader';
 import s from '../components/MovieCard/MovieCard.module.css';
+import routes from '../routes';
 
 const MoviesCast = lazy(() =>
   import(
@@ -33,7 +34,11 @@ export default class MoviesDetailsView extends Component {
     this.setState({ movie: response });
   }
 
-  handleGoBack = () => this.props.history.goBack();
+  // handleGoBack = () => this.props.history.goBack();
+  handleGoBack = () => {
+    const { history } = this.props;
+    history.push(this.props.location?.state?.from || routes.home);
+  };
 
   render() {
     const { movie, isLoading } = this.state;

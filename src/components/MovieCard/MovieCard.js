@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as api from '../../service/movies-api';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import noMovieImg from '../../images/poster-is-not-available.jpg';
 import s from './MovieCard.module.css';
 
-function MovieCard({ movie }) {
+function MovieCard({ movie, location }) {
+  const from = location.state?.from;
   return (
     <div className={s.container}>
       <div className={s.containerImage}>
@@ -36,7 +37,7 @@ function MovieCard({ movie }) {
         <ul className={s.list}>
           <li>
             <NavLink
-              to={{ pathname: `/movies/${movie.id}/cast` }}
+              to={{ pathname: `/movies/${movie.id}/cast`, state: { from } }}
               className={s.link}
               activeClassName={s.activLink}
             >
@@ -45,7 +46,7 @@ function MovieCard({ movie }) {
           </li>
           <li>
             <NavLink
-              to={{ pathname: `/movies/${movie.id}/reviews` }}
+              to={{ pathname: `/movies/${movie.id}/reviews`, state: { from } }}
               className={s.link}
               activeClassName={s.activLink}
             >
@@ -62,4 +63,4 @@ MovieCard.propTypes = {
   movie: PropTypes.object.isRequired,
 };
 
-export default MovieCard;
+export default withRouter(MovieCard);

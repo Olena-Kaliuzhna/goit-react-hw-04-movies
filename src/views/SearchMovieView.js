@@ -17,14 +17,13 @@ export default class SearchMovie extends Component {
     if (!query) {
       return;
     }
-    const { page } = this.state;
+
     api
-      .searchMovies(query, page)
-      .then(results => {
-        this.setState(({ movies, page }) => ({
-          movies: [...movies, ...results],
-          page: page,
-        }));
+      .searchMovies(query)
+      .then(movies => {
+        this.setState({
+          movies: movies,
+        });
       })
       .catch(error => toast.error('Побробуйте снова'))
       .finally(() => this.setState({ isLoading: false }));
@@ -42,14 +41,12 @@ export default class SearchMovie extends Component {
       return;
     }
     this.setState({ isLoading: true });
-    const { page } = this.state;
     api
-      .searchMovies(nextQuery, page)
-      .then(results => {
-        this.setState(({ movies, page }) => ({
-          movies: [...movies, ...results],
-          page: page,
-        }));
+      .searchMovies(nextQuery)
+      .then(movies => {
+        this.setState({
+          movies: movies,
+        });
       })
       .catch(error => toast.error('Побробуйте снова'))
       .finally(() => this.setState({ isLoading: false }));
