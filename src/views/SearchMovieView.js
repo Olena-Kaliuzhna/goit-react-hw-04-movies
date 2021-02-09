@@ -37,7 +37,7 @@ export default class SearchMovie extends Component {
       'query',
     );
 
-    if (prevQuery === nextQuery || prevState.page !== this.state.page) {
+    if (prevQuery === nextQuery) {
       return;
     }
     this.setState({ isLoading: true });
