@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
 import s from './MoviesPreview.module.css';
 
 function MoviesPreview({ title, imgUrl }) {
@@ -21,4 +20,4 @@ MoviesPreview.propTypes = {
   imgUrl: PropTypes.string.isRequired,
 };
 
-export default withRouter(MoviesPreview);
+export default MoviesPreview;
