@@ -15,9 +15,9 @@ export default class HomeView extends Component {
     this.setState({ isLoading: true });
     api
       .getTrending()
-      .then(movies =>
+      .then(({ results }) =>
         this.setState({
-          trending: movies,
+          trending: results,
         }),
       )
       .catch(error => toast.error(`ничего не найдено`))
@@ -26,7 +26,6 @@ export default class HomeView extends Component {
 
   render() {
     const { trending, isLoading } = this.state;
-
     return (
       <>
         <h1
@@ -39,7 +38,7 @@ export default class HomeView extends Component {
           Trending today
         </h1>
         {isLoading && <Loader />}
-        <MoviesList movies={trending} />
+        {trending && <MoviesList movies={trending} />}
         <ToastContainer autoClose={3000} />
       </>
     );

@@ -23,15 +23,16 @@ const MoviesReviews = lazy(() =>
 export default class MoviesDetailsView extends Component {
   state = {
     movie: null,
-
     isLoading: false,
   };
 
   async componentDidMount() {
+    this.setState({ isLoading: true });
     const { movieId } = this.props.match.params;
     const response = await api
       .getMovieDetales(movieId)
-      .catch(error => toast.error(error));
+      .catch(error => toast.error(error))
+      .finally(() => this.setState({ isLoading: false }));
     this.setState({ movie: response });
   }
 
@@ -62,7 +63,7 @@ export default class MoviesDetailsView extends Component {
             <div className={s.iner}>
               <MovieCard movie={movie} />
             </div>
-            <Suspense>
+            <Suspense fallback={<Loader />}>
               <Switch>
                 <Route path={`${routes.movieId}/cast`} component={MoviesCast} />
                 <Route

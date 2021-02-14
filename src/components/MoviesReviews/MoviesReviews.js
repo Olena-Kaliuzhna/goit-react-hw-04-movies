@@ -8,8 +8,9 @@ export default class MoviesReviews extends Component {
   state = { reviews: [] };
 
   componentDidMount() {
+    const { movieId } = this.props.match.params;
     api
-      .getMovieReviews(this.props.match.params.movieId)
+      .getMoviesReviews(movieId)
       .then(reviews => {
         this.setState({
           reviews: [...reviews],

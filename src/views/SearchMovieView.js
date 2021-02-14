@@ -38,9 +38,9 @@ export default class SearchMovie extends Component {
     this.setState({ isLoading: true });
     api
       .searchMovies(query)
-      .then(movies => {
+      .then(({ results }) => {
         this.setState({
-          movies: movies,
+          movies: results,
         });
       })
       .catch(error => toast.error('Побробуйте снова'))

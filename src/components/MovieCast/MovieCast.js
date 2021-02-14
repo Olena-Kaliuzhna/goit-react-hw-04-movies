@@ -9,8 +9,9 @@ export default class MovieCast extends Component {
   state = { cast: [] };
 
   componentDidMount() {
+    const { movieId } = this.props.match.params;
     api
-      .getMovieCast(this.props.match.params.movieId)
+      .getMoviesCast(movieId)
       .then(({ cast }) => {
         this.setState({
           cast: [...cast],
@@ -25,6 +26,7 @@ export default class MovieCast extends Component {
     return (
       <div className={s.section}>
         <h2 className={s.title}>cast</h2>
+
         <ul className={s.container}>
           {cast &&
             cast.map(({ credit_id, profile_path, character, name }) => (
