@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import { Link, useLocation, useHistory } from 'react-router-dom';
 import * as api from '../service/movies-api';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -9,12 +10,13 @@ export default class HomeView extends Component {
   state = {
     trending: [],
     isLoading: false,
+    page: 1,
   };
 
   async componentDidMount() {
     this.setState({ isLoading: true });
     api
-      .getTrending()
+      .getTrending(this.page)
       .then(({ results }) =>
         this.setState({
           trending: results,

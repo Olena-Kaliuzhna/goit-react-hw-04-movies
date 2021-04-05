@@ -2,13 +2,18 @@ import React, { Component } from 'react';
 import * as api from '../../service/movies-api';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Loader from '../Loader/Loader';
 import s from './MoviesReviews.module.css';
 
 export default class MoviesReviews extends Component {
-  state = { reviews: [] };
+  state = {
+    reviews: [],
+    isLoading: false,
+  };
 
   componentDidMount() {
     const { movieId } = this.props.match.params;
+    this.setState({ isLoading: true });
     api
       .getMoviesReviews(movieId)
       .then(reviews => {
@@ -18,14 +23,16 @@ export default class MoviesReviews extends Component {
       })
       .catch(error => {
         toast.error(error);
-      });
+      })
+      .finally(() => this.setState({ isLoading: false }));
   }
 
   render() {
-    const { reviews } = this.state;
+    const { reviews, isLoading } = this.state;
 
     return (
       <div className={s.section}>
+        {isLoading && <Loader />}
         <h2 className={s.title}>Reviews</h2>
         {reviews.length === 0 && (
           <p>We don't have any reviews for this movie.</p>

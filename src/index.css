@@ -2,11 +2,15 @@
 *:before,
 *:after {
   box-sizing: border-box;
+  box-sizing: inherit;
 }
 body {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 15px;
   font-family: Andika New Basic, sans-serif;
-  /* background-image: url('./images/bgLightl.jpg'); */
   color: #a19f9f;
+  background-color: #1d1d1d;
 }
 
 h1,
@@ -22,9 +26,6 @@ a {
   font-size: inherit;
   text-decoration: none;
 }
-body {
-  background-color: #1d1d1d;
-}
 
 ul {
   padding: 0;
@@ -37,13 +38,8 @@ p {
 }
 img {
   display: block;
+  width: 100%;
+  height: auto;
   margin: 0;
   padding: 0;
-}
-
-.container {
-  position: relative;
-  width: 1300px;
-  margin: 0 auto;
-  padding: 40px 40px 40px;
 }

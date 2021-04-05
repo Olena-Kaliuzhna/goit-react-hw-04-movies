@@ -3,13 +3,15 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import * as api from '../../service/movies-api';
 import noCastImg from '../../images/noimages-200x300.png';
+import Loader from '../Loader/Loader';
 import s from './MovieCast.module.css';
 
 export default class MovieCast extends Component {
-  state = { cast: [] };
+  state = { cast: [], isLoading: false };
 
   componentDidMount() {
     const { movieId } = this.props.match.params;
+    this.setState({ isLoading: true });
     api
       .getMoviesCast(movieId)
       .then(({ cast }) => {
@@ -17,11 +19,12 @@ export default class MovieCast extends Component {
           cast: [...cast],
         });
       })
-      .catch(error => toast.error(error));
+      .catch(error => toast.error(error))
+      .finally(() => this.setState({ isLoading: false }));
   }
 
   render() {
-    const { cast } = this.state;
+    const { cast, isLoading } = this.state;
 
     return (
       <div className={s.section}>
@@ -36,6 +39,7 @@ export default class MovieCast extends Component {
                     className={s.image}
                     src={profile_path ? api.imgPath + profile_path : noCastImg}
                     alt={name}
+                    width={'210px'}
                   />
                 </div>
                 <p className={s.name}>{name}</p>
@@ -43,6 +47,7 @@ export default class MovieCast extends Component {
               </li>
             ))}
         </ul>
+        {isLoading && <Loader />}
       </div>
     );
   }

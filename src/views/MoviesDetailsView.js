@@ -49,20 +49,15 @@ export default class MoviesDetailsView extends Component {
         {isLoading && <Loader />}
         {movie && (
           <div className={s.wrapper}>
-            <div className={s.titleBox}>
-              <h1 className={s.movieName}>{movie.title}</h1>
-              <button
-                className={s.goBack}
-                type="button"
-                onClick={this.handleGoBack}
-              >
-                <span>&#8592;</span>Go back
-              </button>
-            </div>
+            <button
+              className={s.goBack}
+              type="button"
+              onClick={this.handleGoBack}
+            >
+              <span>&#8592;</span>Go back
+            </button>
 
-            <div className={s.iner}>
-              <MovieCard movie={movie} />
-            </div>
+            <MovieCard movie={movie} />
             <Suspense fallback={<Loader />}>
               <Switch>
                 <Route path={`${routes.movieId}/cast`} component={MoviesCast} />

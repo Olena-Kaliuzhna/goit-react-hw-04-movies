@@ -39,6 +39,9 @@ export default class SearchMovie extends Component {
     api
       .searchMovies(query)
       .then(({ results }) => {
+        if (results.length === 0) {
+          toast.error(`По запросу ничего не найдено`);
+        }
         this.setState({
           movies: results,
         });
