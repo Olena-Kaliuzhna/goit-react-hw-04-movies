@@ -5,9 +5,9 @@
   box-sizing: inherit;
 }
 body {
-  max-width: 1300px;
+  /* max-width: 1300px; */
   margin: 0 auto;
-  padding: 0 15px;
+
   font-family: Andika New Basic, sans-serif;
   color: #a19f9f;
   background-color: #1d1d1d;
@@ -42,4 +42,7 @@ img {
   height: auto;
   margin: 0;
   padding: 0;
+}
+.container {
+  padding: 0 15px;
 }

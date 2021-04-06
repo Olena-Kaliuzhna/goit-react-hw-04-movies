@@ -23,15 +23,17 @@ const MoviesDetailsView = lazy(() =>
 );
 
 const App = () => (
-  <div className={s.container}>
+  <div>
     <Nav />
     <Suspense fallback={<Loader />}>
-      <Switch>
-        <Route exact path={routes.home} component={HomeView} />
-        <Route exact path={routes.movies} component={SearchMovieView} />
-        <Route path={routes.movieId} component={MoviesDetailsView} />
-        <Route component={NotFoundView} />
-      </Switch>
+      <div className={s.container}>
+        <Switch>
+          <Route exact path={routes.home} component={HomeView} />
+          <Route exact path={routes.movies} component={SearchMovieView} />
+          <Route path={routes.movieId} component={MoviesDetailsView} />
+          <Route component={NotFoundView} />
+        </Switch>
+      </div>
     </Suspense>
   </div>
 );
